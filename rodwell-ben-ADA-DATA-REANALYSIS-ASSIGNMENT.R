@@ -151,19 +151,82 @@ d2
 
 d3 <- log(d2[,2:5])
 d4 <- d2[,1]
+
+
 d3
+d4 <- as.data.frame(d4)
 d4
-d5 <- cbind(d3,d4)
+d5 <- acbind(d3,d4)
 d5
 d6 <- d5[-8,]
 d6
-pca <- prcomp(d6[, -5], scale. = TRUE)
 
+d7 <- d4[2:75,]
+d7 <- as.data.frame(d7)
+
+
+pca <- prcomp(d6[,-5], scale. = TRUE)
+plot(pca)
 pca
+names(pca)
+plot(pca$x, )
+pca$x
+
+d8 <- cbind(d7, pca$x)
+d8
+
+pcaplot <- ggplot(data = d8, aes(PC1, PC2,) + geom_point(color = d7)
+pcaplot
 
 
-
-str(mtcars)
-view(mtcars)
- view(iris)
  
+ 
+ 
+ 
+ 
+##### MANOVA #####
+ 
+library(geiger)
+tree <- read.nexus("tree.nex") 
+data <- read.csv("Pitheciine_means.csv")
+dat <- data[,c(1,3:6)]
+dat
+row.names(dat) <- data$Species
+dat <- dat[,2:5]
+dat
+dat <- as.matrix(dat)
+dat
+
+grp<-as.factor(c("Fruit", "Fruit", "Fruit", "Fruit", "Fruit", "Seeds", "Seeds", "Seeds", "Seeds", "Seeds", "Seeds"))
+names(grp)=rownames(dat)
+
+## MANOVA
+
+x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
+print(attributes(x)$summary) # summary table
+summary(x)
+str(x)
+xs <- summary(x)
+pp <- xs$stats
+pp[1,6]           
+
+plist <- list()
+xx <- for (i in 1:10) {
+  x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
+  xs <- summary(x)
+  pp <- xs$stats
+  plist <- pp[1,6]
+  return(plist)
+}
+pplist
+
+
+plist <- list()
+xx <- for (i in 1:10) {
+  x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
+  xs <- summary(x)
+  pp <- xs$stats
+  ppp <- pp[1,6]
+  plist[i] <- print(ppp)
+}
+plist 

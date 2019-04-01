@@ -1,0 +1,12 @@
+Species,Diet,SR_Mean,RFI_Mean,DNE_Mean,OPC_Mean
+Aotus_azarae,Fruit,2.785,1.850,138.129,53.938
+Aotus_nigriceps,Fruit,2.816,1.784,136.637,54.634
+Callicebus_donacophilus,Fruit,2.705,1.783,183.874,69.208
+Callicebus_moloch,Fruit,2.752,1.771,145.985,64.903
+Callicebus_torquatus,Fruit,2.740,1.777,157.834,71.806
+Pithecia_monachus,Seeds,2.418,1.715,123.435,78.141
+Pithecia_pithecia,Seeds,2.518,1.717,111.084,93.438
+Chiropotes_albinasus,Seeds,2.629,1.723,121.862,82.479
+Chiropotes_satanas,Seeds,2.564,1.732,131.105,83.075
+Cacajao_calvus,Seeds,2.629,1.716,119.843,71.232
+Cacajao_melanocephalus,Seeds,2.613,1.733,126.510,74.125
