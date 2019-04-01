@@ -1,0 +1,18 @@
+#NEXUS
+[created by the 10kTree Website - http://10kTrees.fas.harvard.edu]
+BEGIN TREES;
+translate
+1 Aotus_azarae,
+2 Aotus_nigriceps,
+3 Cacajao_calvus,
+4 Cacajao_melanocephalus,
+5 Callicebus_donacophilus,
+6 Callicebus_moloch,
+7 Callicebus_torquatus,
+8 Chiropotes_satanas,
+9 Pithecia_monachus,
+10 Pithecia_pithecia,
+11 Chiropotes_albinasus;
+tree consensus_11species = ((1:1.285874,2:1.285874):21.446905,((((3:2.274028,4:2.274028):0,(8:2.274028,11:2.274028):0):7.368851,(9:4.404566,10:4.404566):5.238313):9.753209,
+((5:3.913001,6:3.913001):6.567518,7:10.480520):8.915568):3.336691);
+END;
