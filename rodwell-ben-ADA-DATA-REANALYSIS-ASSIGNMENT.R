@@ -200,25 +200,14 @@ dat
 grp<-as.factor(c("Fruit", "Fruit", "Fruit", "Fruit", "Fruit", "Seeds", "Seeds", "Seeds", "Seeds", "Seeds", "Seeds"))
 names(grp)=rownames(dat)
 
-## MANOVA
+
 
 x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
-print(attributes(x)$summary) # summary table
+print(attributes(x)$summary) 
 summary(x)
 str(x)
-xs <- summary(x)
-pp <- xs$stats
-pp[1,6]           
 
-plist <- list()
-xx <- for (i in 1:10) {
-  x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
-  xs <- summary(x)
-  pp <- xs$stats
-  plist <- pp[1,6]
-  return(plist)
-}
-pplist
+
 
 
 plist <- list()
@@ -230,3 +219,23 @@ xx <- for (i in 1:10) {
   plist[i] <- print(ppp)
 }
 plist 
+
+
+
+
+
+
+geo=get(data(geospiza))
+dat=geo$dat
+d1=dat[,1]
+grp<-as.factor(c(rep(0, 7), rep(1, 6)))
+names(grp)=rownames(dat)
+
+## MANOVA
+x=aov.phylo(dat~grp, geo$phy, nsim=50, test="Wilks")
+print(attributes(x)$summary) # summary table
+xs <- summary(x)
+pp <- xs$stats
+p-value[1,6]
+## ANOVA
+x1=aov.phylo(d1~grp, geo$phy, nsim=50)
