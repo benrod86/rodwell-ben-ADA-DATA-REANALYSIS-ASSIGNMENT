@@ -8,9 +8,9 @@ library(ggplot2)
 
 d <- read.csv("Pitheciine_Tooth_data.csv")
 head(d)
+d
 str(d)
-d <- d[,1:7]
-d <- 
+d 
 head(d)
 str(d)
 aotus <- d[1:18,]
@@ -18,7 +18,7 @@ callicebus <- d[19:39,]
 pithecia <- d[40:53,]
 chiropotes <- d[54:64,]
 cacajao <- d[65:75,]
-d$Genus
+aotus
 names(d)
 
 ## Aotus > Pithecia; DNE, RFI, SR, OPCR
@@ -124,8 +124,10 @@ pvals <- c(ttest01$p.value, ttest02$p.value, ttest03$p.value, ttest04$p.value,
            ttest33$p.value, ttest34$p.value, ttest35$p.value, ttest36$p.value)
 
 
+pvals <- as.data.frame(pvals)
+pvals
 
-
+## T-Tests pairwise with "bonferroni correction"
 pvaluesDNE <- pairwise.t.test(d$Energy, d$Genus, p.adj = "bonferroni")
 pvaluesRFI <- pairwise.t.test(d$RFI, d$Genus, p.adj = "bonferroni")
 pvaluesOPC <- pairwise.t.test(d$OPC, d$Genus, p.adj = "bonferroni")
@@ -136,7 +138,7 @@ pvaluesRFI
 pvaluesOPC
 pvaluesSR
 
-
+str(pvaluesDNE)
 
 
 #### PCA
@@ -231,11 +233,9 @@ d1=dat[,1]
 grp<-as.factor(c(rep(0, 7), rep(1, 6)))
 names(grp)=rownames(dat)
 
-## MANOVA
+
 x=aov.phylo(dat~grp, geo$phy, nsim=50, test="Wilks")
-print(attributes(x)$summary) # summary table
+print(attributes(x)$summary)
 xs <- summary(x)
 pp <- xs$stats
-p-value[1,6]
-## ANOVA
-x1=aov.phylo(d1~grp, geo$phy, nsim=50)
+pp[1,6]
