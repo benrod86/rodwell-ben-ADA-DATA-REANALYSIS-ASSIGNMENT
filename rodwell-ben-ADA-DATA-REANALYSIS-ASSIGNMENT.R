@@ -226,7 +226,6 @@ asdRFI <- sd(d$RFI[d$Genus == "Aotus"])
 
 aotusDNE <- d$Energy[d$Genus == "Aotus"]
 aotusDNE <- aotusDNE[-8 ]
-aotusDNE
 amDNE <- mean(aotusDNE)
 aminDNE <- min(aotusDNE)
 amaxDNE <- max(aotusDNE)
@@ -342,7 +341,8 @@ cacmaxOPC <- max(d$OPC[d$Genus == "Cacajao"])
 cacrangeOPC <- c(cacminOPC, cacmaxOPC)
 cacsdOPC <- sd(d$OPC[d$Genus == "Cacajao"])
 
-## Combining the variables to put into a dataframe
+## Combining the variables to put into a table
+### Create vectors for each genus by variable
 aotussum <- c(amSRA, aminSRA, amaxSRA, asdSRA, amRFI, aminRFI, amaxRFI, asdRFI,
     amDNE, aminDNE, amaxDNE, asdDNE, amOPC, aminOPC, amaxOPC, asdOPC)
 calsum <- c(calmSRA, calminSRA, calmaxSRA, calsdSRA, calmRFI, calminRFI, calmaxRFI,
@@ -353,8 +353,10 @@ chsum <- c(chmSRA, chminSRA, chmaxSRA, chsdSRA, chmRFI, chminRFI, chmaxRFI, chsd
               chmDNE, chminDNE, chmaxDNE, chsdDNE, chmOPC, chminOPC, chmaxOPC, chsdOPC)
 cacsum <- c(cacmSRA, cacminSRA, cacmaxSRA, cacsdSRA, cacmRFI, cacminRFI, cacmaxRFI, cacsdRFI,
               cacmDNE, cacminDNE, cacmaxDNE, cacsdDNE, cacmOPC, cacminOPC, cacmaxOPC, cacsdOPC)
+### Create a vector for the row names
 rows <- c("SRA Mean", "SRA Min", "SRA Max", "SRA SD", "RFI Mean", "RFI Min", "RFI Max", "RFI SD",
           "DNE Mean", "DNE Min", "DNE Max", "DNE SD","OPCR Mean", "OPCR Min", "OPCR Max", "OPCR SD")
+### combine the row names with the variables as columns
 table <- cbind(rows, aotussum, calsum, psum, chsum, cacsum)
 table
 sumstatsgenus <- as.data.frame(table, row.names = T)
@@ -376,6 +378,14 @@ view(sumstatsgenus)
 ##
 ## ANOVA and pairwise comparisons
 ## DNE
+library(tidyverse)
+
+
+## LOAD DATA
+d <- read.csv("Pitheciine_Tooth_data.csv")
+head(d)
+str(d)
+
 DNEaov <- aov(data = d, Energy ~ Genus)
 summary(DNEaov)
 DNEttest2way <- pairwise.t.test(d$Energy, d$Genus, alternative = "two.sided", p.adjust.method = "holm")
@@ -543,39 +553,47 @@ library(plyr)
 d <- read.csv("Pitheciine_Tooth_data.csv")
 head(d)
 d1 <- d[,3:7]
-d1
+head(d1)
 d1 <- log(d1[,2:5])
+head(d1)
 d1 <- cbind(d$Genus, d1)
-d1 <- d1[-8,]
+d1 <- d1[-8,] # remove the row with an NA value
+head(d1)
 str(d1)
-d1
 pca <- prcomp(d1[,-1], scale = T)
 pca
 names(pca)
 summary(pca)
-plot(pca, type = "l")
-biplot(pca, scale = 0)
+
+## Making the PCA Table
+names(pca)
+str(pca)
+
+
+
+
 
 ## Ploting the PCA
 ## setup a dataframe with the first 2 principal components,\
 ## and the original dataset used to calculate it
 str(pca)
-pca$x
+head(pca$x)
 d2 <- cbind(d1, pca$x[,1:4])
+head(d2)
 colnames(d2) <- c("Genus", "SR", "Energy", "RFI", "OPC", "PC1", "PC2", "PC3", "PC4")
 head(d2)
-d2
+
 
 ## Determine the convex hulls for the scatterplot
 find_hull <- function(d2) d2[chull(d2$PC1, d2$PC2), ]
 hulls <- ddply(d2, "Genus", find_hull)
 
 ## Plot the data first 2 PC's along with the convex hulls mapped onto the different genera 
-ggplot(d2, aes(x = PC1, y = PC2, col = Genus, fill = Genus)) +
+pcaplot <- ggplot(d2, aes(x = PC1, y = PC2, col = Genus, fill = Genus)) +
   geom_point(shape = 16) + 
   geom_polygon(data = hulls, alpha = .25)
 
-
+pcaplot
 
 
 ## BOXPLOTS OF VARIABLES
@@ -611,10 +629,6 @@ OPCRbox <- ggplot(d, aes(x = Genus, y = OPC)) +
   theme(axis.text.x = italic.text, plot.title = element_text(hjust = 0.5) )
 figure3 <- ggarrange(SRbox, RFIbox, DNEbox, OPCRbox, ncol = 2, nrow = 2)
 figure3
-SRbox
-RFIbox
-DNEbox
-OPCRbox
 
 
  
@@ -640,37 +654,53 @@ grp<-as.factor(c("Fruit", "Fruit", "Fruit", "Fruit", "Fruit", "Seeds", "Seeds", 
 names(grp)=rownames(dat)
 
 
-
+## Code to run the MANOVA
 x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
-print(attributes(x)$summary) 
+print(attributes(x)$summary)
+str(print(attributes(x)$summary))
 summary(x)
 str(x)
 
+## Needs to be repeated 10 times, and phylogenetic p-value from each
+## simulation averaged
 
+### identify thephylogenetically controled p-value
+print(attributes(x)$summary[7])
+levels(print(attributes(x)$summary[7]))
 
-
+## create a dummy variable, and
+## write a loop for storing the phylogenetic p-values into the dummy variable
 plist <- vector()
 xx <- for (i in 1:10) {
   x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
   xs <- summary(x)
   pp <- xs$stats
   ppp <- pp[1,6]
-  plist[i] <- ppp
+  plist[i] <- print(attributes(x)$summary[7])
 }
-plist 
-mean(plist)
-str(pp)
+head(plist)
+plist
+
+## turn the list of p-values into a dataframe
+plist2 <- as.data.frame(plist)
+phyloPvals <- plist2
+phyloPvals <- as.numeric(plist2[1,])
+phyloPvals
+mean(phyloPvals)
 
 
 
 
+levels(print(attributes(x)$summary))
+wilks <- (attributes(x)$summary[2])
+Approx_f <- (attributes(x)$summary[3])
+num_df <- (attributes(x)$summary[4])
+den_df <- (attributes(x)$summary[5])
+standard_pvalue <- (attributes(x)$summary[6])
 
+manovatable <- cbind(wilks, Approx_f, num_df, den_df, standard_pvalue, mean(phyloPvals))
+manovatable <- manovatable[1,]
+manovatable
 
-
-x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
-xs <- summary(x)
-str(xs)
-
-pp <- xs$stats
-ppp <- pp[1,7]
-plist[i] <- ppp
+xxx <- cbind(print(attributes(x)$summary[1:6]), mean(phyloPvals))
+xxx
