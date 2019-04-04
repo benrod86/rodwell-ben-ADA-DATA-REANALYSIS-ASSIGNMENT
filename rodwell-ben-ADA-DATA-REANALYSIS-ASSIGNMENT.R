@@ -1,3 +1,4 @@
+##
 setwd("~/repos/rodwell-ben-ADA-DATA-REANALYSIS-ASSIGNMENT")
 library(tidyverse)
 library(curl)
@@ -5,14 +6,412 @@ library(ggplot2)
 
 
 ## LOAD DATA
-
 d <- read.csv("Pitheciine_Tooth_data.csv")
 head(d)
-d
 str(d)
-d 
-head(d)
-str(d)
+ 
+
+## Summary stats by species
+levels(d$Taxon)
+
+
+## Aotus azare
+
+aazSRmean <- mean(d$SR[d$Taxon == "Aotus_azare"])
+aazSRsd <- sd(d$SR[d$Taxon == "Aotus_azare"])
+
+aazRFImean <- mean(d$RFI[d$Taxon == "Aotus_azare"])
+aazRFIsd <- sd(d$RFI[d$Taxon == "Aotus_azare"])
+
+aazDNEmean <- mean(d$Energy[d$Taxon == "Aotus_azare"])
+aazDNEsd <- sd(d$Energy[d$Taxon == "Aotus_azare"])
+
+aazOPCmean <- mean(d$OPC[d$Taxon == "Aotus_azare"])
+aazOPCsd <- sd(d$OPC[d$Taxon == "Aotus_azare"])
+
+aaz <- c(aazSRmean, aazSRsd, aazRFImean, aazRFIsd, aazDNEmean, aazDNEsd, aazOPCmean, aazOPCsd)
+
+## Aotus nigriceps
+aniSRmean <- mean(d$SR[d$Taxon == "Aotus_nigriceps"])
+aniSRsd <- sd(d$SR[d$Taxon == "Aotus_nigriceps"])
+
+aniRFImean <- mean(d$RFI[d$Taxon == "Aotus_nigriceps"])
+aniRFIsd <- sd(d$RFI[d$Taxon == "Aotus_nigriceps"])
+
+aniDNEmean <- mean(d$Energy[d$Taxon == "Aotus_nigriceps"])
+aniDNEsd <- sd(d$Energy[d$Taxon == "Aotus_nigriceps"])
+
+aniOPCmean <- mean(d$OPC[d$Taxon == "Aotus_nigriceps"])
+aniOPCsd <- sd(d$OPC[d$Taxon == "Aotus_nigriceps"])
+
+ani <- c(aniSRmean, aniSRsd, aniRFImean, aniRFIsd, aniDNEmean, aniDNEsd, aniOPCmean, aniOPCsd)
+
+
+## Callicebus donacophilus
+cadonSRmean <- mean(d$SR[d$Taxon == "Callicebus_donacophilus"])
+cadonSRsd <- sd(d$SR[d$Taxon == "Callicebus_donacophilus"])
+
+cadonRFImean <- mean(d$RFI[d$Taxon == "Callicebus_donacophilus"])
+cadonRFIsd <- sd(d$RFI[d$Taxon == "Callicebus_donacophilus"])
+
+cadonDNEmean <- mean(d$Energy[d$Taxon == "Callicebus_donacophilus"])
+cadonDNEsd <- sd(d$Energy[d$Taxon == "Callicebus_donacophilus"])
+
+cadonOPCmean <- mean(d$OPC[d$Taxon == "Callicebus_donacophilus"])
+cadonOPCsd <- sd(d$OPC[d$Taxon == "Callicebus_donacophilus"])
+
+cadon <- c(cadonSRmean, cadonSRsd, cadonRFImean, cadonRFIsd, cadonDNEmean, cadonDNEsd, cadonOPCmean, cadonOPCsd)
+
+
+## Callicebus moloch
+camolSRmean <- mean(d$SR[d$Taxon == "Callicebus_moloch"])
+camolSRsd <- sd(d$SR[d$Taxon == "Callicebus_moloch"])
+
+camolRFImean <- mean(d$RFI[d$Taxon == "Callicebus_moloch"])
+camolRFIsd <- sd(d$RFI[d$Taxon == "Callicebus_moloch"])
+
+camolDNEmean <- mean(d$Energy[d$Taxon == "Callicebus_moloch"])
+camolDNEsd <- sd(d$Energy[d$Taxon == "Callicebus_moloch"])
+
+camolOPCmean <- mean(d$OPC[d$Taxon == "Callicebus_moloch"])
+camolOPCsd <- sd(d$OPC[d$Taxon == "Callicebus_moloch"])
+
+camol <- c(camolSRmean, camolSRsd, camolRFImean, camolRFIsd, camolDNEmean, camolDNEsd, camolOPCmean, camolOPCsd)
+
+
+## Callicebus torquatus
+catorSRmean <- mean(d$SR[d$Taxon == "Callicebus_torquatus"])
+catorSRsd <- sd(d$SR[d$Taxon == "Callicebus_torquatus"])
+
+catorRFImean <- mean(d$RFI[d$Taxon == "Callicebus_torquatus"])
+catorRFIsd <- sd(d$RFI[d$Taxon == "Callicebus_torquatus"])
+
+catorDNEmean <- mean(d$Energy[d$Taxon == "Callicebus_torquatus"])
+catorDNEsd <- sd(d$Energy[d$Taxon == "Callicebus_torquatus"])
+
+catorOPCmean <- mean(d$OPC[d$Taxon == "Callicebus_torquatus"])
+catorOPCsd <- sd(d$OPC[d$Taxon == "Callicebus_torquatus"])
+
+cator <- c(catorSRmean, catorSRsd, catorRFImean, catorRFIsd, catorDNEmean, catorDNEsd, catorOPCmean, catorOPCsd)
+
+
+## Pithecia monachus
+pimonSRmean <- mean(d$SR[d$Taxon == "Pithecia_monachus"])
+pimonSRsd <- sd(d$SR[d$Taxon == "Pithecia_monachus"])
+
+pimonRFImean <- mean(d$RFI[d$Taxon == "Pithecia_monachus"])
+pimonRFIsd <- sd(d$RFI[d$Taxon == "Pithecia_monachus"])
+
+pimonDNEmean <- mean(d$Energy[d$Taxon == "Pithecia_monachus"])
+pimonDNEsd <- sd(d$Energy[d$Taxon == "Pithecia_monachus"])
+
+pimonOPCmean <- mean(d$OPC[d$Taxon == "Pithecia_monachus"])
+pimonOPCsd <- sd(d$OPC[d$Taxon == "Pithecia_monachus"])
+
+pimon <- c(pimonSRmean, pimonSRsd, pimonRFImean, pimonRFIsd, pimonDNEmean, pimonDNEsd, pimonOPCmean, pimonOPCsd)
+
+
+
+## Pithecia pithecia
+pipiSRmean <- mean(d$SR[d$Taxon == "Pithecia_pithecia"])
+pipiSRsd <- sd(d$SR[d$Taxon == "Pithecia_pithecia"])
+
+pipiRFImean <- mean(d$RFI[d$Taxon == "Pithecia_pithecia"])
+pipiRFIsd <- sd(d$RFI[d$Taxon == "Pithecia_pithecia"])
+
+pipiDNEmean <- mean(d$Energy[d$Taxon == "Pithecia_pithecia"])
+pipiDNEsd <- sd(d$Energy[d$Taxon == "Pithecia_pithecia"])
+
+pipiOPCmean <- mean(d$OPC[d$Taxon == "Pithecia_pithecia"])
+pipiOPCsd <- sd(d$OPC[d$Taxon == "Pithecia_pithecia"])
+
+pipi <- c(pipiSRmean, pipiSRsd, pipiRFImean, pipiRFIsd, pipiDNEmean, pipiDNEsd, pipiOPCmean, pipiOPCsd)
+
+
+
+## Chiropotes albinasus
+chialSRmean <- mean(d$SR[d$Taxon == "Chiropotes_albinasus"])
+chialSRsd <- sd(d$SR[d$Taxon == "Chiropotes_albinasus"])
+
+chialRFImean <- mean(d$RFI[d$Taxon == "Chiropotes_albinasus"])
+chialRFIsd <- sd(d$RFI[d$Taxon == "Chiropotes_albinasus"])
+
+chialDNEmean <- mean(d$Energy[d$Taxon == "Chiropotes_albinasus"])
+chialDNEsd <- sd(d$Energy[d$Taxon == "Chiropotes_albinasus"])
+
+chialOPCmean <- mean(d$OPC[d$Taxon == "Chiropotes_albinasus"])
+chialOPCsd <- sd(d$OPC[d$Taxon == "Chiropotes_albinasus"])
+
+chial <- c(chialSRmean, chialSRsd, chialRFImean, chialRFIsd, chialDNEmean, chialDNEsd, chialOPCmean, chialOPCsd)
+
+
+
+## Chiropotes satanas
+chisaSRmean <- mean(d$SR[d$Taxon == "Chiropotes_satanas"])
+chisaSRsd <- sd(d$SR[d$Taxon == "Chiropotes_satanas"])
+
+chisaRFImean <- mean(d$RFI[d$Taxon == "Chiropotes_satanas"])
+chisaRFIsd <- sd(d$RFI[d$Taxon == "Chiropotes_satanas"])
+
+chisaDNEmean <- mean(d$Energy[d$Taxon == "Chiropotes_satanas"])
+chisaDNEsd <- sd(d$Energy[d$Taxon == "Chiropotes_satanas"])
+
+chisaOPCmean <- mean(d$OPC[d$Taxon == "Chiropotes_satanas"])
+chisaOPCsd <- sd(d$OPC[d$Taxon == "Chiropotes_satanas"])
+
+chisa <- c(chisaSRmean, chisaSRsd, chisaRFImean, chisaRFIsd, chisaDNEmean, chisaDNEsd, chisaOPCmean, chisaOPCsd)
+
+
+## Cacajao calvus
+cacalSRmean <- mean(d$SR[d$Taxon == "Cacajao_calvus"])
+cacalSRsd <- sd(d$SR[d$Taxon == "Cacajao_calvus"])
+
+cacalRFImean <- mean(d$RFI[d$Taxon == "Cacajao_calvus"])
+cacalRFIsd <- sd(d$RFI[d$Taxon == "Cacajao_calvus"])
+
+cacalDNEmean <- mean(d$Energy[d$Taxon == "Cacajao_calvus"])
+cacalDNEsd <- sd(d$Energy[d$Taxon == "Cacajao_calvus"])
+
+cacalOPCmean <- mean(d$OPC[d$Taxon == "Cacajao_calvus"])
+cacalOPCsd <- sd(d$OPC[d$Taxon == "Cacajao_calvus"])
+
+cacal <- c(cacalSRmean, cacalSRsd, cacalRFImean, cacalRFIsd, cacalDNEmean, cacalDNEsd, cacalOPCmean, cacalOPCsd)
+
+
+
+
+## Cacajao melanocephalus
+camelSRmean <- mean(d$SR[d$Taxon == "Cacajao_melanocephalus"])
+camelSRsd <- sd(d$SR[d$Taxon == "Cacajao_melanocephalus"])
+
+camelRFImean <- mean(d$RFI[d$Taxon == "Cacajao_melanocephalus"])
+camelRFIsd <- sd(d$RFI[d$Taxon == "Cacajao_melanocephalus"])
+
+camelDNEmean <- mean(d$Energy[d$Taxon == "Cacajao_melanocephalus"])
+camelDNEsd <- sd(d$Energy[d$Taxon == "Cacajao_melanocephalus"])
+
+camelOPCmean <- mean(d$OPC[d$Taxon == "Cacajao_melanocephalus"])
+camelOPCsd <- sd(d$OPC[d$Taxon == "Cacajao_melanocephalus"])
+
+camel <- c(camelSRmean, camelSRsd, camelRFImean, camelRFIsd, camelDNEmean, camelDNEsd, camelOPCmean, camelOPCsd)
+
+
+## Combining the variables into a dataframe
+rows2 <- c("Aotus azarae", "Aotus nigriceps", "Callicebus donacophilus", "Callicebus moloch", "Callicebus torquatus",
+           "Pithecia monachus", "Pithecia pithecia", "Chiropotes albinasus", "Chiropotes satanas", "Cacajao calvus",
+           "Cacajao melanocephalus")
+tablespecies <- rbind(aaz, ani, cadon, camol, cator, pimon, pipi, chial, chisa, cacal, camel)
+tablespecies
+sumstatsspecies <- as.data.frame(tablespecies, row.names = T)
+sumstatsspecies
+rownames(sumstatsspecies) <- rows2
+colnames(sumstatsspecies) <- c("SRA Mean", "SRA SD", "RFI Mean", "RFI SD", "DNE Mean", "DNE SD", "OPCR Mean", "OPCR SD")
+str(sumstatsspecies)
+view(sumstatsspecies)
+
+
+## Summary statistics by genus
+## AOTUS
+amSRA <- mean(d$SR[d$Genus == "Aotus"])
+aminSRA <- min(d$SR[d$Genus == "Aotus"])
+amaxSRA <- max(d$SR[d$Genus == "Aotus"])
+arangeSRA <- c(aminSRA, amaxSRA)
+asdSRA <- sd(d$SR[d$Genus == "Aotus"])
+
+amRFI <- mean(d$RFI[d$Genus == "Aotus"])
+aminRFI <- min(d$RFI[d$Genus == "Aotus"])
+amaxRFI <- max(d$RFI[d$Genus == "Aotus"])
+arangeRFI <- c(aminRFI, amaxRFI)
+asdRFI <- sd(d$RFI[d$Genus == "Aotus"])
+
+aotusDNE <- d$Energy[d$Genus == "Aotus"]
+aotusDNE <- aotusDNE[-8 ]
+aotusDNE
+amDNE <- mean(aotusDNE)
+aminDNE <- min(aotusDNE)
+amaxDNE <- max(aotusDNE)
+arangeDNE <- c(aminDNE, amaxDNE)
+asdDNE <- sd(aotusDNE)
+
+amOPC <- mean(d$OPC[d$Genus == "Aotus"])
+aminOPC <- min(d$OPC[d$Genus == "Aotus"])
+amaxOPC <- max(d$OPC[d$Genus == "Aotus"])
+arangeOPC <- c(aminOPC, amaxOPC)
+asdOPC <- sd(d$OPC[d$Genus == "Aotus"])
+
+## Callicebus
+calmSRA <- mean(d$SR[d$Genus == "Callicebus"])
+calminSRA <- min(d$SR[d$Genus == "Callicebus"])
+calmaxSRA <- max(d$SR[d$Genus == "Callicebus"])
+calrangeSRA <- c(calminSRA, calmaxSRA)
+calsdSRA <- sd(d$SR[d$Genus == "Callicebus"])
+
+calmRFI <- mean(d$RFI[d$Genus == "Callicebus"])
+calminRFI <- min(d$RFI[d$Genus == "Callicebus"])
+calmaxRFI <- max(d$RFI[d$Genus == "Callicebus"])
+calrangeRFI <- c(calminRFI, calmaxRFI)
+calsdRFI <- sd(d$RFI[d$Genus == "Callicebus"])
+
+calmDNE <- mean(d$Energy[d$Genus == "Callicebus"])
+calminDNE <- min(d$Energy[d$Genus == "Callicebus"])
+calmaxDNE <- max(d$Energy[d$Genus == "Callicebus"])
+calrangeDNE <- c(calminDNE, calmaxDNE)
+calsdDNE <- sd(d$Energy[d$Genus == "Callicebus"])
+
+calmOPC <- mean(d$OPC[d$Genus == "Callicebus"])
+calminOPC <- min(d$OPC[d$Genus == "Callicebus"])
+calmaxOPC <- max(d$OPC[d$Genus == "Callicebus"])
+calrangeOPC <- c(calminOPC, calmaxOPC)
+calsdOPC <- sd(d$OPC[d$Genus == "Callicebus"])
+
+
+## Pithecia
+pmSRA <- mean(d$SR[d$Genus == "Pithecia"])
+pminSRA <- min(d$SR[d$Genus == "Pithecia"])
+pmaxSRA <- max(d$SR[d$Genus == "Pithecia"])
+prangeSRA <- c(pminSRA, pmaxSRA)
+psdSRA <- sd(d$SR[d$Genus == "Pithecia"])
+
+pmRFI <- mean(d$RFI[d$Genus == "Pithecia"])
+pminRFI <- min(d$RFI[d$Genus == "Pithecia"])
+pmaxRFI <- max(d$RFI[d$Genus == "Pithecia"])
+prangeRFI <- c(pminRFI, pmaxRFI)
+psdRFI <- sd(d$RFI[d$Genus == "Pithecia"])
+
+pmDNE <- mean(d$Energy[d$Genus == "Pithecia"])
+pminDNE <- min(d$Energy[d$Genus == "Pithecia"])
+pmaxDNE <- max(d$Energy[d$Genus == "Pithecia"])
+prangeDNE <- c(pminDNE, pmaxDNE)
+psdDNE <- sd(d$Energy[d$Genus == "Pithecia"])
+
+pmOPC <- mean(d$OPC[d$Genus == "Pithecia"])
+pminOPC <- min(d$OPC[d$Genus == "Pithecia"])
+pmaxOPC <- max(d$OPC[d$Genus == "Pithecia"])
+prangeOPC <- c(pminOPC, pmaxOPC)
+psdOPC <- sd(d$OPC[d$Genus == "Pithecia"])
+
+
+## Chiropotes
+chmSRA <- mean(d$SR[d$Genus == "Chiropotes"])
+chminSRA <- min(d$SR[d$Genus == "Chiropotes"])
+chmaxSRA <- max(d$SR[d$Genus == "Chiropotes"])
+chrangeSRA <- c(chminSRA, chmaxSRA)
+chsdSRA <- sd(d$SR[d$Genus == "Chiropotes"])
+
+chmRFI <- mean(d$RFI[d$Genus == "Chiropotes"])
+chminRFI <- min(d$RFI[d$Genus == "Chiropotes"])
+chmaxRFI <- max(d$RFI[d$Genus == "Chiropotes"])
+chrangeRFI <- c(chminRFI, chmaxRFI)
+chsdRFI <- sd(d$RFI[d$Genus == "Chiropotes"])
+
+chmDNE <- mean(d$Energy[d$Genus == "Chiropotes"])
+chminDNE <- min(d$Energy[d$Genus == "Chiropotes"])
+chmaxDNE <- max(d$Energy[d$Genus == "Chiropotes"])
+chrangeDNE <- c(chminDNE, chmaxDNE)
+chsdDNE <- sd(d$Energy[d$Genus == "Chiropotes"])
+
+chmOPC <- mean(d$OPC[d$Genus == "Chiropotes"])
+chminOPC <- min(d$OPC[d$Genus == "Chiropotes"])
+chmaxOPC <- max(d$OPC[d$Genus == "Chiropotes"])
+chrangeOPC <- c(chminOPC, chmaxOPC)
+chsdOPC <- sd(d$OPC[d$Genus == "Chiropotes"])
+
+
+## Cacajao
+cacmSRA <- mean(d$SR[d$Genus == "Cacajao"])
+cacminSRA <- min(d$SR[d$Genus == "Cacajao"])
+cacmaxSRA <- max(d$SR[d$Genus == "Cacajao"])
+cacrangeSRA <- c(cacminSRA, cacmaxSRA)
+cacsdSRA <- sd(d$SR[d$Genus == "Cacajao"])
+
+cacmRFI <- mean(d$RFI[d$Genus == "Cacajao"])
+cacminRFI <- min(d$RFI[d$Genus == "Cacajao"])
+cacmaxRFI <- max(d$RFI[d$Genus == "Cacajao"])
+cacrangeRFI <- c(cacminRFI, cacmaxRFI)
+cacsdRFI <- sd(d$RFI[d$Genus == "Cacajao"])
+
+cacmDNE <- mean(d$Energy[d$Genus == "Cacajao"])
+cacminDNE <- min(d$Energy[d$Genus == "Cacajao"])
+cacmaxDNE <- max(d$Energy[d$Genus == "Cacajao"])
+cacrangeDNE <- c(cacminDNE, cacmaxDNE)
+cacsdDNE <- sd(d$Energy[d$Genus == "Cacajao"])
+
+cacmOPC <- mean(d$OPC[d$Genus == "Cacajao"])
+cacminOPC <- min(d$OPC[d$Genus == "Cacajao"])
+cacmaxOPC <- max(d$OPC[d$Genus == "Cacajao"])
+cacrangeOPC <- c(cacminOPC, cacmaxOPC)
+cacsdOPC <- sd(d$OPC[d$Genus == "Cacajao"])
+
+## Combining the variables to put into a dataframe
+aotussum <- c(amSRA, aminSRA, amaxSRA, asdSRA, amRFI, aminRFI, amaxRFI, asdRFI,
+    amDNE, aminDNE, amaxDNE, asdDNE, amOPC, aminOPC, amaxOPC, asdOPC)
+calsum <- c(calmSRA, calminSRA, calmaxSRA, calsdSRA, calmRFI, calminRFI, calmaxRFI,
+    calsdRFI, calmDNE, calminDNE, calmaxDNE, calsdDNE, calmOPC, calminOPC, calmaxOPC, calsdOPC)
+psum <- c(pmSRA, pminSRA, pmaxSRA, psdSRA, pmRFI, pminRFI, pmaxRFI, psdRFI,
+              pmDNE, pminDNE, pmaxDNE, psdDNE, pmOPC, pminOPC, pmaxOPC, psdOPC)
+chsum <- c(chmSRA, chminSRA, chmaxSRA, chsdSRA, chmRFI, chminRFI, chmaxRFI, chsdRFI,
+              chmDNE, chminDNE, chmaxDNE, chsdDNE, chmOPC, chminOPC, chmaxOPC, chsdOPC)
+cacsum <- c(cacmSRA, cacminSRA, cacmaxSRA, cacsdSRA, cacmRFI, cacminRFI, cacmaxRFI, cacsdRFI,
+              cacmDNE, cacminDNE, cacmaxDNE, cacsdDNE, cacmOPC, cacminOPC, cacmaxOPC, cacsdOPC)
+rows <- c("SRA Mean", "SRA Min", "SRA Max", "SRA SD", "RFI Mean", "RFI Min", "RFI Max", "RFI SD",
+          "DNE Mean", "DNE Min", "DNE Max", "DNE SD","OPCR Mean", "OPCR Min", "OPCR Max", "OPCR SD")
+table <- cbind(rows, aotussum, calsum, psum, chsum, cacsum)
+table
+sumstatsgenus <- as.data.frame(table, row.names = T)
+sumstatsgenus
+colnames(sumstatsgenus) <- c("", "Aotus", "Callicebus", "Pithecia", "Chiropotes", "Cacajao")
+str(sumstatsgenus)
+sumstatsgenus$Aotus <- as.numeric(as.character(sumstatsgenus$Aotus))
+sumstatsgenus$Callicebus <- as.numeric(as.character(sumstatsgenus$Callicebus))
+sumstatsgenus$Pithecia <- as.numeric(as.character(sumstatsgenus$Pithecia))
+sumstatsgenus$Chiropotes <- as.numeric(as.character(sumstatsgenus$Chiropotes))
+sumstatsgenus$Cacajao <- as.numeric(as.character(sumstatsgenus$Cacajao))
+row.names(sumstatsgenus) <- rows
+sumstatsgenus <- sumstatsgenus[,-1]
+view(sumstatsgenus)
+
+
+
+
+##
+## ANOVA and pairwise comparisons
+## DNE
+DNEaov <- aov(data = d, Energy ~ Genus)
+summary(DNEaov)
+DNEttest2way <- pairwise.t.test(d$Energy, d$Genus, alternative = "two.sided", p.adjust.method = "holm")
+DNEttest1way <- pairwise.t.test(d$Energy, d$Genus, alternative = "less", p.adjust.method = "holm")
+DNEttest2way
+DNEttest1way
+
+
+## OPC
+OPCaov <- aov(data = d, OPC ~ Genus)
+summary(OPCaov)
+OPCttest2way <- pairwise.t.test(d$OPC, d$Genus, alternative = "two.sided", p.adjust.method = "holm")
+OPCttest1way <- pairwise.t.test(d$OPC, d$Genus, alternative = "", p.adjust.method = "holm")
+OPCttest2way
+OPCttest1way
+
+
+## RFI
+RFIaov <- aov(data = d, RFI ~ Genus)
+summary(RFIaov)
+RFIttest2way <- pairwise.t.test(d$RFI, d$Genus, alternative = "two.sided", p.adjust.method = "holm")
+RFIttest1way <- pairwise.t.test(d$RFI, d$Genus, alternative = "greater", p.adjust.method = "holm")
+RFIttest2way
+RFIttest1way
+
+
+## SR
+SRaov <- aov(data = d, SR ~ Genus)
+summary(SRaov)
+SRttest2way <- pairwise.t.test(d$SR, d$Genus, alternative = "two.sided", p.adjust.method = "holm")
+SRttest1way <- pairwise.t.test(d$SR, d$Genus, alternative = "greater", p.adjust.method = "holm")
+SRttest2way
+SRttest1way
+
+
+
 aotus <- d[1:18,]
 callicebus <- d[19:39,]
 pithecia <- d[40:53,]
@@ -20,6 +419,11 @@ chiropotes <- d[54:64,]
 cacajao <- d[65:75,]
 aotus
 names(d)
+
+
+
+
+
 
 ## Aotus > Pithecia; DNE, RFI, SR, OPCR
 ttest01 <- t.test(x=aotus$Energy,y=pithecia$Energy, alternative="greater", conf.level=0.95)
@@ -127,66 +531,99 @@ pvals <- c(ttest01$p.value, ttest02$p.value, ttest03$p.value, ttest04$p.value,
 pvals <- as.data.frame(pvals)
 pvals
 
-## T-Tests pairwise with "bonferroni correction"
-pvaluesDNE <- pairwise.t.test(d$Energy, d$Genus, p.adj = "bonferroni")
-pvaluesRFI <- pairwise.t.test(d$RFI, d$Genus, p.adj = "bonferroni")
-pvaluesOPC <- pairwise.t.test(d$OPC, d$Genus, p.adj = "bonferroni")
-pvaluesSR <- pairwise.t.test(d$SR, d$Genus, p.adj = "bonferroni")
-
-pvaluesDNE
-pvaluesRFI
-pvaluesOPC
-pvaluesSR
-
-str(pvaluesDNE)
 
 
-#### PCA
+
+
+## PCA
 library(FactoMineR)
 library(factoextra)
+library(ggplot2)
+library(plyr)
 d <- read.csv("Pitheciine_Tooth_data.csv")
-
 head(d)
-d2 <- d[,3:7]
-d2
-
-
-d3 <- log(d2[,2:5])
-d4 <- d2[,1]
-
-
-d3
-d4 <- as.data.frame(d4)
-d4
-d5 <- acbind(d3,d4)
-d5
-d6 <- d5[-8,]
-d6
-
-d7 <- d4[2:75,]
-d7 <- as.data.frame(d7)
-
-
-pca <- prcomp(d6[,-5], scale. = TRUE)
-plot(pca)
+d1 <- d[,3:7]
+d1
+d1 <- log(d1[,2:5])
+d1 <- cbind(d$Genus, d1)
+d1 <- d1[-8,]
+str(d1)
+d1
+pca <- prcomp(d1[,-1], scale = T)
 pca
 names(pca)
-plot(pca$x, )
+summary(pca)
+plot(pca, type = "l")
+biplot(pca, scale = 0)
+
+## Ploting the PCA
+## setup a dataframe with the first 2 principal components,\
+## and the original dataset used to calculate it
+str(pca)
 pca$x
+d2 <- cbind(d1, pca$x[,1:4])
+colnames(d2) <- c("Genus", "SR", "Energy", "RFI", "OPC", "PC1", "PC2", "PC3", "PC4")
+head(d2)
+d2
 
-d8 <- cbind(d7, pca$x)
-d8
+## Determine the convex hulls for the scatterplot
+find_hull <- function(d2) d2[chull(d2$PC1, d2$PC2), ]
+hulls <- ddply(d2, "Genus", find_hull)
 
-pcaplot <- ggplot(data = d8, aes(PC1, PC2,) + geom_point(color = d7)
-pcaplot
+## Plot the data first 2 PC's along with the convex hulls mapped onto the different genera 
+ggplot(d2, aes(x = PC1, y = PC2, col = Genus, fill = Genus)) +
+  geom_point(shape = 16) + 
+  geom_polygon(data = hulls, alpha = .25)
+
+
+
+
+## BOXPLOTS OF VARIABLES
+library(ggplot2)
+library(ggpubr)
+d <- read.csv("Pitheciine_Tooth_data.csv")
+head(d)
+
+d$Genus <- factor(d$Genus, levels = c("Aotus", "Callicebus", "Pithecia", "Chiropotes", "Cacajao"))
+levels(d$Genus)
+### SRA 
+par(mfrow = c(2,2))
+SRbox <- boxplot(d$SR ~ d$Genus)
+RFIbox <- boxplot(d$RFI ~ d$Genus)
+DNEbox <- boxplot(d$Energy ~ d$Genus)
+OPCRbox <- boxplot(d$OPC ~d$Genus)
+
+
+## Vector for text formating
+italic.text <- element_text(face = "bold.italic", color = "black")
+
+SRbox <- ggplot(d, aes(x = Genus, y = SR)) +
+  geom_boxplot() +xlab("") + ggtitle("SRA") + ylab("SRA") +
+  theme(axis.text.x = italic.text, plot.title = element_text(hjust = 0.5) )
+RFIbox <- ggplot(d, aes(x = Genus, y = RFI)) +
+  geom_boxplot() + xlab("") + ggtitle("RFI") + ylab("RFI") +
+  theme(axis.text.x = italic.text, plot.title = element_text(hjust = 0.5) )
+DNEbox <- ggplot(d, aes(x = Genus, y = Energy)) +
+  geom_boxplot() + xlab("") + ggtitle("DNE") + ylab("DNE") +
+  theme(axis.text.x = italic.text, plot.title = element_text(hjust = 0.5) )
+OPCRbox <- ggplot(d, aes(x = Genus, y = OPC)) +
+  geom_boxplot() + xlab("") + ggtitle("OPCR") + ylab("OPCR") +
+  theme(axis.text.x = italic.text, plot.title = element_text(hjust = 0.5) )
+figure3 <- ggarrange(SRbox, RFIbox, DNEbox, OPCRbox, ncol = 2, nrow = 2)
+figure3
+SRbox
+RFIbox
+DNEbox
+OPCRbox
+
+
+ 
 
 
  
  
  
- 
- 
-##### MANOVA #####
+### MANOVA ##
  
 library(geiger)
 tree <- read.nexus("tree.nex") 
@@ -212,30 +649,28 @@ str(x)
 
 
 
-plist <- list()
+plist <- vector()
 xx <- for (i in 1:10) {
   x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
   xs <- summary(x)
   pp <- xs$stats
   ppp <- pp[1,6]
-  plist[i] <- print(ppp)
+  plist[i] <- ppp
 }
 plist 
+mean(plist)
+str(pp)
 
 
 
 
 
 
-geo=get(data(geospiza))
-dat=geo$dat
-d1=dat[,1]
-grp<-as.factor(c(rep(0, 7), rep(1, 6)))
-names(grp)=rownames(dat)
 
-
-x=aov.phylo(dat~grp, geo$phy, nsim=50, test="Wilks")
-print(attributes(x)$summary)
+x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
 xs <- summary(x)
+str(xs)
+
 pp <- xs$stats
-pp[1,6]
+ppp <- pp[1,7]
+plist[i] <- ppp

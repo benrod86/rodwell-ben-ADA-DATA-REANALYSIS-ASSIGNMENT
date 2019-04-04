@@ -24,6 +24,9 @@ knitr::opts_chunk$set(
 [Include a summary of the paper you are reanalyzing data from]
 
 ## Visualization of Data
+```{r}
+sumstats
+```
 
 [Include a view of the first few lines of the data set plus exploratory data analysis - overview of descriptive statistics included in the paper, plots, etc.
 
