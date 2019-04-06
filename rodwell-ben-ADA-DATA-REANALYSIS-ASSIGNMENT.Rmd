@@ -19,18 +19,568 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Introduction
+# Introduction
 
-[Include a summary of the paper you are reanalyzing data from]
+### [Include a summary of the paper you are reanalyzing data from]
 
-## Visualization of Data
+# Visualization of Data
+
+### Load the data and inspect it 
 ```{r}
-sumstats
+d <- read.csv("Pitheciine_Tooth_data.csv")
+head(d)
+str(d)
+levels(d$Taxon)
 ```
 
-[Include a view of the first few lines of the data set plus exploratory data analysis - overview of descriptive statistics included in the paper, plots, etc.
 
 ## Replications/Reanalysis
+
+## Summary statistics by species
+
+### The following code calculates the summary statistics of the data by species (table 3 of Ledogar et al., (2013))
+```{r}
+# Summary stats by species - Mean and SD for each variable and containing each of these.
+# The vector will be used to construct a table showing these data for each species
+
+# Aotus azare
+aazSRmean <- mean(d$SR[d$Taxon == "Aotus_azare"])
+aazSRsd <- sd(d$SR[d$Taxon == "Aotus_azare"])
+
+aazRFImean <- mean(d$RFI[d$Taxon == "Aotus_azare"])
+aazRFIsd <- sd(d$RFI[d$Taxon == "Aotus_azare"])
+
+aazDNEmean <- mean(d$Energy[d$Taxon == "Aotus_azare"])
+aazDNEsd <- sd(d$Energy[d$Taxon == "Aotus_azare"])
+
+aazOPCmean <- mean(d$OPC[d$Taxon == "Aotus_azare"])
+aazOPCsd <- sd(d$OPC[d$Taxon == "Aotus_azare"])
+
+aaz <- c(aazSRmean, aazSRsd, aazRFImean, aazRFIsd, aazDNEmean, aazDNEsd, aazOPCmean, aazOPCsd)
+
+# Aotus nigriceps
+aniSRmean <- mean(d$SR[d$Taxon == "Aotus_nigriceps"])
+aniSRsd <- sd(d$SR[d$Taxon == "Aotus_nigriceps"])
+
+aniRFImean <- mean(d$RFI[d$Taxon == "Aotus_nigriceps"])
+aniRFIsd <- sd(d$RFI[d$Taxon == "Aotus_nigriceps"])
+
+aaaa <- d$Energy[d$Taxon == "Aotus_nigriceps"]
+aotusnigriceps <- aaaa[-4]
+aniDNEmean <- mean(aotusnigriceps)
+aniDNEsd <- sd(aotusnigriceps)
+
+aniOPCmean <- mean(d$OPC[d$Taxon == "Aotus_nigriceps"])
+aniOPCsd <- sd(d$OPC[d$Taxon == "Aotus_nigriceps"])
+
+ani <- c(aniSRmean, aniSRsd, aniRFImean, aniRFIsd, aniDNEmean, aniDNEsd, aniOPCmean, aniOPCsd)
+
+
+# Callicebus donacophilus
+cadonSRmean <- mean(d$SR[d$Taxon == "Callicebus_donacophilus"])
+cadonSRsd <- sd(d$SR[d$Taxon == "Callicebus_donacophilus"])
+
+cadonRFImean <- mean(d$RFI[d$Taxon == "Callicebus_donacophilus"])
+cadonRFIsd <- sd(d$RFI[d$Taxon == "Callicebus_donacophilus"])
+
+cadonDNEmean <- mean(d$Energy[d$Taxon == "Callicebus_donacophilus"])
+cadonDNEsd <- sd(d$Energy[d$Taxon == "Callicebus_donacophilus"])
+
+cadonOPCmean <- mean(d$OPC[d$Taxon == "Callicebus_donacophilus"])
+cadonOPCsd <- sd(d$OPC[d$Taxon == "Callicebus_donacophilus"])
+
+cadon <- c(cadonSRmean, cadonSRsd, cadonRFImean, cadonRFIsd, cadonDNEmean, cadonDNEsd, cadonOPCmean, cadonOPCsd)
+
+
+# Callicebus moloch
+camolSRmean <- mean(d$SR[d$Taxon == "Callicebus_moloch"])
+camolSRsd <- sd(d$SR[d$Taxon == "Callicebus_moloch"])
+
+camolRFImean <- mean(d$RFI[d$Taxon == "Callicebus_moloch"])
+camolRFIsd <- sd(d$RFI[d$Taxon == "Callicebus_moloch"])
+
+camolDNEmean <- mean(d$Energy[d$Taxon == "Callicebus_moloch"])
+camolDNEsd <- sd(d$Energy[d$Taxon == "Callicebus_moloch"])
+
+camolOPCmean <- mean(d$OPC[d$Taxon == "Callicebus_moloch"])
+camolOPCsd <- sd(d$OPC[d$Taxon == "Callicebus_moloch"])
+
+camol <- c(camolSRmean, camolSRsd, camolRFImean, camolRFIsd, camolDNEmean, camolDNEsd, camolOPCmean, camolOPCsd)
+
+
+# Callicebus torquatus
+catorSRmean <- mean(d$SR[d$Taxon == "Callicebus_torquatus"])
+catorSRsd <- sd(d$SR[d$Taxon == "Callicebus_torquatus"])
+
+catorRFImean <- mean(d$RFI[d$Taxon == "Callicebus_torquatus"])
+catorRFIsd <- sd(d$RFI[d$Taxon == "Callicebus_torquatus"])
+
+catorDNEmean <- mean(d$Energy[d$Taxon == "Callicebus_torquatus"])
+catorDNEsd <- sd(d$Energy[d$Taxon == "Callicebus_torquatus"])
+
+catorOPCmean <- mean(d$OPC[d$Taxon == "Callicebus_torquatus"])
+catorOPCsd <- sd(d$OPC[d$Taxon == "Callicebus_torquatus"])
+
+cator <- c(catorSRmean, catorSRsd, catorRFImean, catorRFIsd, catorDNEmean, catorDNEsd, catorOPCmean, catorOPCsd)
+
+
+# Pithecia monachus
+pimonSRmean <- mean(d$SR[d$Taxon == "Pithecia_monachus"])
+pimonSRsd <- sd(d$SR[d$Taxon == "Pithecia_monachus"])
+
+pimonRFImean <- mean(d$RFI[d$Taxon == "Pithecia_monachus"])
+pimonRFIsd <- sd(d$RFI[d$Taxon == "Pithecia_monachus"])
+
+pimonDNEmean <- mean(d$Energy[d$Taxon == "Pithecia_monachus"])
+pimonDNEsd <- sd(d$Energy[d$Taxon == "Pithecia_monachus"])
+
+pimonOPCmean <- mean(d$OPC[d$Taxon == "Pithecia_monachus"])
+pimonOPCsd <- sd(d$OPC[d$Taxon == "Pithecia_monachus"])
+
+pimon <- c(pimonSRmean, pimonSRsd, pimonRFImean, pimonRFIsd, pimonDNEmean, pimonDNEsd, pimonOPCmean, pimonOPCsd)
+
+
+
+# Pithecia pithecia
+pipiSRmean <- mean(d$SR[d$Taxon == "Pithecia_pithecia"])
+pipiSRsd <- sd(d$SR[d$Taxon == "Pithecia_pithecia"])
+
+pipiRFImean <- mean(d$RFI[d$Taxon == "Pithecia_pithecia"])
+pipiRFIsd <- sd(d$RFI[d$Taxon == "Pithecia_pithecia"])
+
+pipiDNEmean <- mean(d$Energy[d$Taxon == "Pithecia_pithecia"])
+pipiDNEsd <- sd(d$Energy[d$Taxon == "Pithecia_pithecia"])
+
+pipiOPCmean <- mean(d$OPC[d$Taxon == "Pithecia_pithecia"])
+pipiOPCsd <- sd(d$OPC[d$Taxon == "Pithecia_pithecia"])
+
+pipi <- c(pipiSRmean, pipiSRsd, pipiRFImean, pipiRFIsd, pipiDNEmean, pipiDNEsd, pipiOPCmean, pipiOPCsd)
+
+
+
+# Chiropotes albinasus
+chialSRmean <- mean(d$SR[d$Taxon == "Chiropotes_albinasus"])
+chialSRsd <- sd(d$SR[d$Taxon == "Chiropotes_albinasus"])
+
+chialRFImean <- mean(d$RFI[d$Taxon == "Chiropotes_albinasus"])
+chialRFIsd <- sd(d$RFI[d$Taxon == "Chiropotes_albinasus"])
+
+chialDNEmean <- mean(d$Energy[d$Taxon == "Chiropotes_albinasus"])
+chialDNEsd <- sd(d$Energy[d$Taxon == "Chiropotes_albinasus"])
+
+chialOPCmean <- mean(d$OPC[d$Taxon == "Chiropotes_albinasus"])
+chialOPCsd <- sd(d$OPC[d$Taxon == "Chiropotes_albinasus"])
+
+chial <- c(chialSRmean, chialSRsd, chialRFImean, chialRFIsd, chialDNEmean, chialDNEsd, chialOPCmean, chialOPCsd)
+
+
+
+# Chiropotes satanas
+chisaSRmean <- mean(d$SR[d$Taxon == "Chiropotes_satanas"])
+chisaSRsd <- sd(d$SR[d$Taxon == "Chiropotes_satanas"])
+
+chisaRFImean <- mean(d$RFI[d$Taxon == "Chiropotes_satanas"])
+chisaRFIsd <- sd(d$RFI[d$Taxon == "Chiropotes_satanas"])
+
+chisaDNEmean <- mean(d$Energy[d$Taxon == "Chiropotes_satanas"])
+chisaDNEsd <- sd(d$Energy[d$Taxon == "Chiropotes_satanas"])
+
+chisaOPCmean <- mean(d$OPC[d$Taxon == "Chiropotes_satanas"])
+chisaOPCsd <- sd(d$OPC[d$Taxon == "Chiropotes_satanas"])
+
+chisa <- c(chisaSRmean, chisaSRsd, chisaRFImean, chisaRFIsd, chisaDNEmean, chisaDNEsd, chisaOPCmean, chisaOPCsd)
+
+
+# Cacajao calvus
+cacalSRmean <- mean(d$SR[d$Taxon == "Cacajao_calvus"])
+cacalSRsd <- sd(d$SR[d$Taxon == "Cacajao_calvus"])
+
+cacalRFImean <- mean(d$RFI[d$Taxon == "Cacajao_calvus"])
+cacalRFIsd <- sd(d$RFI[d$Taxon == "Cacajao_calvus"])
+
+cacalDNEmean <- mean(d$Energy[d$Taxon == "Cacajao_calvus"])
+cacalDNEsd <- sd(d$Energy[d$Taxon == "Cacajao_calvus"])
+
+cacalOPCmean <- mean(d$OPC[d$Taxon == "Cacajao_calvus"])
+cacalOPCsd <- sd(d$OPC[d$Taxon == "Cacajao_calvus"])
+
+cacal <- c(cacalSRmean, cacalSRsd, cacalRFImean, cacalRFIsd, cacalDNEmean, cacalDNEsd, cacalOPCmean, cacalOPCsd)
+
+
+
+
+# Cacajao melanocephalus
+camelSRmean <- mean(d$SR[d$Taxon == "Cacajao_melanocephalus"])
+camelSRsd <- sd(d$SR[d$Taxon == "Cacajao_melanocephalus"])
+
+camelRFImean <- mean(d$RFI[d$Taxon == "Cacajao_melanocephalus"])
+camelRFIsd <- sd(d$RFI[d$Taxon == "Cacajao_melanocephalus"])
+
+camelDNEmean <- mean(d$Energy[d$Taxon == "Cacajao_melanocephalus"])
+camelDNEsd <- sd(d$Energy[d$Taxon == "Cacajao_melanocephalus"])
+
+camelOPCmean <- mean(d$OPC[d$Taxon == "Cacajao_melanocephalus"])
+camelOPCsd <- sd(d$OPC[d$Taxon == "Cacajao_melanocephalus"])
+
+camel <- c(camelSRmean, camelSRsd, camelRFImean, camelRFIsd, camelDNEmean, camelDNEsd, camelOPCmean, camelOPCsd)
+```
+
+### Next create an object that summarizes these in a single dataframe
+```{r}
+# Combining the variables into a dataframe
+rows2 <- c("Aotus azarae", "Aotus nigriceps", "Callicebus donacophilus", "Callicebus moloch", "Callicebus torquatus",
+           "Pithecia monachus", "Pithecia pithecia", "Chiropotes albinasus", "Chiropotes satanas", "Cacajao calvus",
+           "Cacajao melanocephalus")
+tablespecies <- rbind(aaz, ani, cadon, camol, cator, pimon, pipi, chial, chisa, cacal, camel)
+sumstatsspecies <- as.data.frame(tablespecies, row.names = T)
+rownames(sumstatsspecies) <- rows2
+colnames(sumstatsspecies) <- c("SRA Mean", "SRA SD", "RFI Mean", "RFI SD", "DNE Mean", "DNE SD", "OPCR Mean", "OPCR SD")
+```
+
+### Compare the table created to the one from the original paper
+```{r}
+sumstatsspecies
+```
+
+## Summary statistics by genus
+
+### The following code calculates the summary statistics of the data by genus (table 5 of Ledogar et al., (2013))
+```{r}
+# Summary statistics by genus - Mean, Minimum, Maximum, and SD for each variable and containing each of these.
+# The vector will be used to construct a table showing these data for each genus
+
+# AOTUS
+amSRA <- mean(d$SR[d$Genus == "Aotus"])
+aminSRA <- min(d$SR[d$Genus == "Aotus"])
+amaxSRA <- max(d$SR[d$Genus == "Aotus"])
+asdSRA <- sd(d$SR[d$Genus == "Aotus"])
+
+amRFI <- mean(d$RFI[d$Genus == "Aotus"])
+aminRFI <- min(d$RFI[d$Genus == "Aotus"])
+amaxRFI <- max(d$RFI[d$Genus == "Aotus"])
+asdRFI <- sd(d$RFI[d$Genus == "Aotus"])
+
+# Aotus has an "NA" value the "Energy" variable for one of the specimen in the original datset that needs to first be removed
+aotusDNE <- d$Energy[d$Genus == "Aotus"]
+aotusDNE <- aotusDNE[-8 ]
+amDNE <- mean(aotusDNE)
+aminDNE <- min(aotusDNE)
+amaxDNE <- max(aotusDNE)
+asdDNE <- sd(aotusDNE)
+
+amOPC <- mean(d$OPC[d$Genus == "Aotus"])
+aminOPC <- min(d$OPC[d$Genus == "Aotus"])
+amaxOPC <- max(d$OPC[d$Genus == "Aotus"])
+asdOPC <- sd(d$OPC[d$Genus == "Aotus"])
+
+# Callicebus
+calmSRA <- mean(d$SR[d$Genus == "Callicebus"])
+calminSRA <- min(d$SR[d$Genus == "Callicebus"])
+calmaxSRA <- max(d$SR[d$Genus == "Callicebus"])
+calsdSRA <- sd(d$SR[d$Genus == "Callicebus"])
+
+calmRFI <- mean(d$RFI[d$Genus == "Callicebus"])
+calminRFI <- min(d$RFI[d$Genus == "Callicebus"])
+calmaxRFI <- max(d$RFI[d$Genus == "Callicebus"])
+calsdRFI <- sd(d$RFI[d$Genus == "Callicebus"])
+
+calmDNE <- mean(d$Energy[d$Genus == "Callicebus"])
+calminDNE <- min(d$Energy[d$Genus == "Callicebus"])
+calmaxDNE <- max(d$Energy[d$Genus == "Callicebus"])
+calsdDNE <- sd(d$Energy[d$Genus == "Callicebus"])
+
+calmOPC <- mean(d$OPC[d$Genus == "Callicebus"])
+calminOPC <- min(d$OPC[d$Genus == "Callicebus"])
+calmaxOPC <- max(d$OPC[d$Genus == "Callicebus"])
+calsdOPC <- sd(d$OPC[d$Genus == "Callicebus"])
+
+# Pithecia
+pmSRA <- mean(d$SR[d$Genus == "Pithecia"])
+pminSRA <- min(d$SR[d$Genus == "Pithecia"])
+pmaxSRA <- max(d$SR[d$Genus == "Pithecia"])
+psdSRA <- sd(d$SR[d$Genus == "Pithecia"])
+
+pmRFI <- mean(d$RFI[d$Genus == "Pithecia"])
+pminRFI <- min(d$RFI[d$Genus == "Pithecia"])
+pmaxRFI <- max(d$RFI[d$Genus == "Pithecia"])
+psdRFI <- sd(d$RFI[d$Genus == "Pithecia"])
+
+pmDNE <- mean(d$Energy[d$Genus == "Pithecia"])
+pminDNE <- min(d$Energy[d$Genus == "Pithecia"])
+pmaxDNE <- max(d$Energy[d$Genus == "Pithecia"])
+psdDNE <- sd(d$Energy[d$Genus == "Pithecia"])
+
+pmOPC <- mean(d$OPC[d$Genus == "Pithecia"])
+pminOPC <- min(d$OPC[d$Genus == "Pithecia"])
+pmaxOPC <- max(d$OPC[d$Genus == "Pithecia"])
+psdOPC <- sd(d$OPC[d$Genus == "Pithecia"])
+
+# Chiropotes
+chmSRA <- mean(d$SR[d$Genus == "Chiropotes"])
+chminSRA <- min(d$SR[d$Genus == "Chiropotes"])
+chmaxSRA <- max(d$SR[d$Genus == "Chiropotes"])
+chsdSRA <- sd(d$SR[d$Genus == "Chiropotes"])
+
+chmRFI <- mean(d$RFI[d$Genus == "Chiropotes"])
+chminRFI <- min(d$RFI[d$Genus == "Chiropotes"])
+chmaxRFI <- max(d$RFI[d$Genus == "Chiropotes"])
+chsdRFI <- sd(d$RFI[d$Genus == "Chiropotes"])
+
+chmDNE <- mean(d$Energy[d$Genus == "Chiropotes"])
+chminDNE <- min(d$Energy[d$Genus == "Chiropotes"])
+chmaxDNE <- max(d$Energy[d$Genus == "Chiropotes"])
+chsdDNE <- sd(d$Energy[d$Genus == "Chiropotes"])
+
+chmOPC <- mean(d$OPC[d$Genus == "Chiropotes"])
+chminOPC <- min(d$OPC[d$Genus == "Chiropotes"])
+chmaxOPC <- max(d$OPC[d$Genus == "Chiropotes"])
+chsdOPC <- sd(d$OPC[d$Genus == "Chiropotes"])
+
+# Cacajao
+cacmSRA <- mean(d$SR[d$Genus == "Cacajao"])
+cacminSRA <- min(d$SR[d$Genus == "Cacajao"])
+cacmaxSRA <- max(d$SR[d$Genus == "Cacajao"])
+cacsdSRA <- sd(d$SR[d$Genus == "Cacajao"])
+
+cacmRFI <- mean(d$RFI[d$Genus == "Cacajao"])
+cacminRFI <- min(d$RFI[d$Genus == "Cacajao"])
+cacmaxRFI <- max(d$RFI[d$Genus == "Cacajao"])
+cacsdRFI <- sd(d$RFI[d$Genus == "Cacajao"])
+
+cacmDNE <- mean(d$Energy[d$Genus == "Cacajao"])
+cacminDNE <- min(d$Energy[d$Genus == "Cacajao"])
+cacmaxDNE <- max(d$Energy[d$Genus == "Cacajao"])
+cacsdDNE <- sd(d$Energy[d$Genus == "Cacajao"])
+
+cacmOPC <- mean(d$OPC[d$Genus == "Cacajao"])
+cacminOPC <- min(d$OPC[d$Genus == "Cacajao"])
+cacmaxOPC <- max(d$OPC[d$Genus == "Cacajao"])
+cacsdOPC <- sd(d$OPC[d$Genus == "Cacajao"])
+```
+
+
+### Next create an object that summarizes these variables into a single dataframe
+```{r}
+# Combining the variables to put into a table
+# Create vectors containing each of the variables just calculated for each genus
+aotussum <- c(amSRA, aminSRA, amaxSRA, asdSRA, amRFI, aminRFI, amaxRFI, asdRFI, amDNE, aminDNE, amaxDNE, asdDNE, amOPC, aminOPC, amaxOPC, asdOPC)
+calsum <- c(calmSRA, calminSRA, calmaxSRA, calsdSRA, calmRFI, calminRFI, calmaxRFI, calsdRFI, calmDNE, calminDNE, calmaxDNE, calsdDNE, calmOPC, calminOPC, calmaxOPC, calsdOPC)
+psum <- c(pmSRA, pminSRA, pmaxSRA, psdSRA, pmRFI, pminRFI, pmaxRFI, psdRFI, pmDNE, pminDNE, pmaxDNE, psdDNE, pmOPC, pminOPC, pmaxOPC, psdOPC)
+chsum <- c(chmSRA, chminSRA, chmaxSRA, chsdSRA, chmRFI, chminRFI, chmaxRFI, chsdRFI, chmDNE, chminDNE, chmaxDNE, chsdDNE, chmOPC, chminOPC, chmaxOPC, chsdOPC)
+cacsum <- c(cacmSRA, cacminSRA, cacmaxSRA, cacsdSRA, cacmRFI, cacminRFI, cacmaxRFI, cacsdRFI, cacmDNE, cacminDNE, cacmaxDNE, cacsdDNE, cacmOPC, cacminOPC, cacmaxOPC, cacsdOPC)
+
+# Create a vector for the row names
+rows <- c("SRA Mean", "SRA Min", "SRA Max", "SRA SD", "RFI Mean", "RFI Min", "RFI Max", "RFI SD",
+          "DNE Mean", "DNE Min", "DNE Max", "DNE SD","OPCR Mean", "OPCR Min", "OPCR Max", "OPCR SD")
+
+# combine the row names with the variables as columns and turn it into a dataframe
+table <- cbind(rows, aotussum, calsum, psum, chsum, cacsum)
+sumstatsgenus <- as.data.frame(table, row.names = T)
+
+# Set the names of the columns to the different genera
+colnames(sumstatsgenus) <- c("", "Aotus", "Callicebus", "Pithecia", "Chiropotes", "Cacajao")
+
+# since all the variables are returned as factors they should be converted back to numeric variables
+sumstatsgenus$Aotus <- as.numeric(as.character(sumstatsgenus$Aotus))
+sumstatsgenus$Callicebus <- as.numeric(as.character(sumstatsgenus$Callicebus))
+sumstatsgenus$Pithecia <- as.numeric(as.character(sumstatsgenus$Pithecia))
+sumstatsgenus$Chiropotes <- as.numeric(as.character(sumstatsgenus$Chiropotes))
+sumstatsgenus$Cacajao <- as.numeric(as.character(sumstatsgenus$Cacajao))
+
+# convert the first colunm to be the set rownames of the dataframe
+row.names(sumstatsgenus) <- rows
+sumstatsgenus <- sumstatsgenus[,-1]
+```
+
+
+
+### Compare the table created to the one from the original paper.
+#### NOTE that the code here has the max and min for each variable in separate rows while the original paper has them combined into rows named "range"
+```{r}
+sumstatsgenus
+```
+
+
+
+
+
+
+## PCA
+### Load the data and set it up to run the PCA
+```{r}
+library(ggplot2)
+library(plyr)
+d <- read.csv("Pitheciine_Tooth_data.csv")
+# create data frame with only the measured variables
+d1 <- d[,3:7]
+# log transform the data
+d1 <- log(d1[,2:5])
+# combine genus names with variables
+d1 <- cbind(d$Genus, d1)
+# remove the row with an NA value
+d1 <- d1[-8,]
+head(d1)
+str(d1)
+# Run the PCA and inspect the output
+pca <- prcomp(d1[,-1], scale = T)
+pca
+names(pca)
+summary(pca)
+```
+
+
+## Ploting the PCA (figure 4 from Ledogar et al., (2013))
+```{r}
+# setup a dataframe with the first 2 principal components and the original dataset used to calculate it
+d2 <- cbind(d1, pca$x[,1:4])
+colnames(d2) <- c("Genus", "SR", "Energy", "RFI", "OPC", "PC1", "PC2", "PC3", "PC4")
+
+# Determine the convex hulls for the scatterplot
+find_hull <- function(d2) d2[chull(d2$PC1, d2$PC2), ]
+hulls <- ddply(d2, "Genus", find_hull)
+
+# Plot the data first 2 PC's along with the convex hulls mapped onto the different genera 
+pcaplot <- ggplot(d2, aes(x = PC1, y = PC2, col = Genus, fill = Genus)) +
+  geom_point(shape = 16) + geom_polygon(data = hulls, alpha = .25) +
+  xlim(-4, 4)  + ylim(-3, 3)
+```
+
+### Compare the plot you created with the one from the original paper
+```{r}
+pcaplot
+```
+
+
+
+## Create a table showing the Eigenvalues, % variance accounted for, and coefficients for each variable (table 6 from Ledogar et al., (2013))
+```{r}
+# Eigenvalues for each component
+pca$var <- pca$sdev * pca$sdev
+
+# Calculate the % varianvce accounted for by each component
+pcavar <- c((pca$var[1]/4)*100, (pca$var[2]/4)*100, (pca$var[3]/4)*100, (pca$var[4]/4)*100)
+
+# Make sure that the combined % variance accounted for by each component sums up to 100%
+pcavar
+
+# Combine the Eigenvalues, % variance, and coefficients for each variable into a single dataframe
+pcatable <- cbind(pca$var, pcavar, pca$rotation[1,], pca$rotation[2,], pca$rotation[3,], pca$rotation[4,])
+pcatable <- as.data.frame(pcatable)
+colnames(pcatable) <- c("Eigenvalue", "% Variance", "SRA", "RFI", "DNE", "OPCR")
+```
+
+
+### Compare your PCA table to the one fromm the original paper
+```{r}
+pcatable
+```
+
+
+## Boxplots of variables by genus (figure 3 of Ledogar et al., (2013))
+```{r}
+# Load the data
+library(ggplot2)
+library(ggpubr)
+d <- read.csv("Pitheciine_Tooth_data.csv")
+head(d)
+
+# Relevel the geneus names 
+d$Genus <- factor(d$Genus, levels = c("Aotus", "Callicebus", "Pithecia", "Chiropotes", "Cacajao"))
+levels(d$Genus)
+
+# setup a vector to italicize the x value text 
+italic.text <- element_text(face = c("italic"), color = "black")
+
+# create the boxplot objects
+SRbox <- ggplot(d, aes(x = Genus, y = SR)) +
+  geom_boxplot() +xlab("") + ggtitle("SRA") + ylab("SRA") +
+  theme(axis.text.x = italic.text, plot.title = element_text(hjust = 0.5) )
+RFIbox <- ggplot(d, aes(x = Genus, y = RFI)) +
+  geom_boxplot() + xlab("") + ggtitle("RFI") + ylab("RFI") +
+  theme(axis.text.x = italic.text, plot.title = element_text(hjust = 0.5) )
+DNEbox <- ggplot(d, aes(x = Genus, y = Energy)) +
+  geom_boxplot() + xlab("") + ggtitle("DNE") + ylab("DNE") +
+  theme(axis.text.x = italic.text, plot.title = element_text(hjust = 0.5) )
+OPCRbox <- ggplot(d, aes(x = Genus, y = OPC)) +
+  geom_boxplot() + xlab("") + ggtitle("OPCR") + ylab("OPCR") +
+  theme(axis.text.x = italic.text, plot.title = element_text(hjust = 0.5) )
+
+# Combine the different plots into a single object
+figure3 <- ggarrange(SRbox, RFIbox, DNEbox, OPCRbox, ncol = 2, nrow = 2)
+```
+
+### Comare the figure you created with the original one from the paper
+```{r}
+figure3
+```
+
+## MANOVA
+```{r}
+# Load the data and set it up into a matrix that can be used tto conduct the PCA
+# first put the variables into a standalone matrix
+library(geiger)
+tree <- read.nexus("tree.nex") 
+data <- read.csv("Pitheciine_means.csv")
+dat <- data[,c(1,3:6)]
+dat
+row.names(dat) <- data$Species
+dat <- dat[,2:5]
+dat
+dat <- as.matrix(dat)
+dat
+
+# make an object of factors for the dietary groupings that corresponds with the matrix you just created
+grp<-as.factor(c("Fruit", "Fruit", "Fruit", "Fruit", "Fruit", "Seeds", "Seeds", "Seeds", "Seeds", "Seeds", "Seeds"))
+names(grp)=rownames(dat)
+
+# Code to run the MANOVA
+x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
+
+
+# Needs to be repeated 10 times, and phylogenetic p-value from each simulation averaged
+# First identify the phylogenetically controled p-value
+print(attributes(x)$summary[7])
+levels(print(attributes(x)$summary[7]))
+
+# Create a dummy variable, and write a loop for storing the phylogenetic p-values into the dummy variable
+plist <- vector()
+xx <- for (i in 1:10) {
+  x=aov.phylo(dat~grp, tree, nsim=5000, test="Wilks")
+  xs <- summary(x)
+  pp <- xs$stats
+  ppp <- pp[1,6]
+  plist[i] <- print(attributes(x)$summary[7])
+}
+
+
+# Turn the list of p-values into a dataframe
+plist2 <- as.data.frame(plist)
+phyloPvals <- plist2
+phyloPvals <- as.numeric(plist2[1,])
+phyloPvals
+
+
+# Construct the table of values from the MANOVA
+# First create an object for each variable
+levels(print(attributes(x)$summary))
+wilks <- (attributes(x)$summary[2])
+Approx_f <- (attributes(x)$summary[3])
+num_df <- (attributes(x)$summary[4])
+den_df <- (attributes(x)$summary[5])
+standard_pvalue <- (attributes(x)$summary[6])
+
+# Then combine those objects with the average of phylogenetic p-values
+manovatable <- cbind(wilks, Approx_f, num_df, den_df, standard_pvalue, mean(phyloPvals))
+manovatable <- manovatable[1,]
+```
+
+
+### Compare the MANOVA table you created to the original one from the paper
+```{r}
+manovatable
+```
+
+
 
 ## Summary
 
