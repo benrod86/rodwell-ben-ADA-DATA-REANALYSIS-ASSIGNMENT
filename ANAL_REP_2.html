@@ -850,17 +850,17 @@ x=aov.phylo(dat~grp, tree, nsim=5000, test=&quot;Wilks&quot;)</code></pre>
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.3953
+## group      1 0.099546   13.568      4      6 0.0036512           0.4011
 ## Residuals  9</code></pre>
 <pre class="r"><code># Needs to be repeated 10 times, and phylogenetic p-value from each simulation averaged
 # First identify the phylogenetically controled p-value
 print(attributes(x)$summary[7])</code></pre>
 <pre><code>##           Pr(&gt;F) given phy
-## group               0.3953
+## group               0.4011
 ## Residuals</code></pre>
 <pre class="r"><code>levels(print(attributes(x)$summary[7]))</code></pre>
 <pre><code>##           Pr(&gt;F) given phy
-## group               0.3953
+## group               0.4011
 ## Residuals</code></pre>
 <pre><code>## NULL</code></pre>
 <pre class="r"><code># Create a dummy variable, and write a loop for storing the phylogenetic p-values into the dummy variable
@@ -876,99 +876,99 @@ xx &lt;- for (i in 1:10) {
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.3911
+## group      1 0.099546   13.568      4      6 0.0036512           0.3967
 ## Residuals  9                                                           
 ##           Pr(&gt;F) given phy
-## group               0.3911
+## group               0.3967
 ## Residuals                 
 ## Multivariate Analysis of Variance Table
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.3925
+## group      1 0.099546   13.568      4      6 0.0036512           0.4013
 ## Residuals  9                                                           
 ##           Pr(&gt;F) given phy
-## group               0.3925
+## group               0.4013
 ## Residuals                 
 ## Multivariate Analysis of Variance Table
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.3939
+## group      1 0.099546   13.568      4      6 0.0036512           0.4061
 ## Residuals  9                                                           
 ##           Pr(&gt;F) given phy
-## group               0.3939
+## group               0.4061
 ## Residuals                 
 ## Multivariate Analysis of Variance Table
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.3961
+## group      1 0.099546   13.568      4      6 0.0036512           0.3967
 ## Residuals  9                                                           
 ##           Pr(&gt;F) given phy
-## group               0.3961
+## group               0.3967
 ## Residuals                 
 ## Multivariate Analysis of Variance Table
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.3953
+## group      1 0.099546   13.568      4      6 0.0036512           0.4001
 ## Residuals  9                                                           
 ##           Pr(&gt;F) given phy
-## group               0.3953
+## group               0.4001
 ## Residuals                 
 ## Multivariate Analysis of Variance Table
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.3931
+## group      1 0.099546   13.568      4      6 0.0036512           0.3883
 ## Residuals  9                                                           
 ##           Pr(&gt;F) given phy
-## group               0.3931
+## group               0.3883
 ## Residuals                 
 ## Multivariate Analysis of Variance Table
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.4021
+## group      1 0.099546   13.568      4      6 0.0036512           0.3991
 ## Residuals  9                                                           
 ##           Pr(&gt;F) given phy
-## group               0.4021
+## group               0.3991
 ## Residuals                 
 ## Multivariate Analysis of Variance Table
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.4031
+## group      1 0.099546   13.568      4      6 0.0036512           0.3983
 ## Residuals  9                                                           
 ##           Pr(&gt;F) given phy
-## group               0.4031
+## group               0.3983
 ## Residuals                 
 ## Multivariate Analysis of Variance Table
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.3945
+## group      1 0.099546   13.568      4      6 0.0036512           0.3955
 ## Residuals  9                                                           
 ##           Pr(&gt;F) given phy
-## group               0.3945
+## group               0.3955
 ## Residuals                 
 ## Multivariate Analysis of Variance Table
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.4123
+## group      1 0.099546   13.568      4      6 0.0036512           0.4069
 ## Residuals  9                                                           
 ##           Pr(&gt;F) given phy
-## group               0.4123
+## group               0.4069
 ## Residuals</code></pre>
 <pre class="r"><code># Turn the list of p-values into a dataframe
 plist2 &lt;- as.data.frame(plist)
 phyloPvals &lt;- plist2
 phyloPvals &lt;- as.numeric(plist2[1,])
 phyloPvals</code></pre>
-<pre><code>##  [1] 0.3911218 0.3925215 0.3939212 0.3961208 0.3953209 0.3931214 0.4021196
-##  [8] 0.4031194 0.3945211 0.4123175</code></pre>
+<pre><code>##  [1] 0.3967207 0.4013197 0.4061188 0.3967207 0.4001200 0.3883223 0.3991202
+##  [8] 0.3983203 0.3955209 0.4069186</code></pre>
 <pre class="r"><code># Construct the table of values from the MANOVA
 # First create an object for each variable
 levels(print(attributes(x)$summary))</code></pre>
@@ -976,7 +976,7 @@ levels(print(attributes(x)$summary))</code></pre>
 ## 
 ## Response: dat
 ##           Df    Wilks approx-F num-Df den-Df    Pr(&gt;F) Pr(&gt;F) given phy
-## group      1 0.099546   13.568      4      6 0.0036512           0.4123
+## group      1 0.099546   13.568      4      6 0.0036512           0.4069
 ## Residuals  9</code></pre>
 <pre><code>## NULL</code></pre>
 <pre class="r"><code>wilks &lt;- (attributes(x)$summary[2])
@@ -992,7 +992,7 @@ manovatable &lt;- manovatable[1,]</code></pre>
 <h3>Compare the MANOVA table you created to the original one from the paper</h3>
 <pre class="r"><code>manovatable</code></pre>
 <pre><code>##            Wilks approx-F num-Df den-Df      Pr(&gt;F) mean(phyloPvals)
-## group 0.09954642 13.56835      4      6 0.003651223        0.3974205</code></pre>
+## group 0.09954642 13.56835      4      6 0.003651223        0.3989202</code></pre>
 <pre class="r"><code>View(manovatable)</code></pre>
 </div>
 </div>
