@@ -421,44 +421,10 @@ ttest34 <- t.test(x=chiropotes$Energy, y=cacajao$Energy, alternative="two.sided"
 ttest35 <- t.test(x=chiropotes$SR, y=cacajao$SR, alternative="two.sided", conf.level=0.95)
 ttest36 <- t.test(x=chiropotes$OPC, y=cacajao$OPC, alternative="two.sided", conf.level=0.95)
 
-ttest01
-ttest02
-ttest03
-ttest04
-ttest05
-ttest06
-ttest07
-ttest08
-ttest09
-ttest10
-ttest11
-ttest12
-ttest13
-ttest14
-ttest15
-ttest16
-ttest17
-ttest18
-ttest19
-ttest20
-ttest21
-ttest22
-ttest23
-ttest24
-ttest25
-ttest26
-ttest27
-ttest28
-ttest29
-ttest30
-ttest31
-ttest32
-ttest33
-ttest34
-ttest35
-ttest36
+# Look to see which vriables fro the t-tests we want to pull out
 names(ttest01)
 
+# create vectors for the p-values and t-statistics
 pvals <- c(ttest01$p.value, ttest02$p.value, ttest03$p.value, ttest04$p.value,
            ttest05$p.value, ttest06$p.value, ttest07$p.value, ttest08$p.value,
            ttest09$p.value, ttest10$p.value, ttest11$p.value, ttest12$p.value,
