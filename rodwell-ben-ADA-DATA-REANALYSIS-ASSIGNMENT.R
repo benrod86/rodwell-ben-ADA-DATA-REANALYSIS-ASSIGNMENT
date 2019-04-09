@@ -464,9 +464,6 @@ names(d)
 
 
 
-
-
-
 # Aotus > Pithecia; DNE, RFI, SR, OPCR
 ttest01 <- t.test(x=aotus$Energy,y=pithecia$Energy, alternative="greater", conf.level=0.95)
 ttest02 <- t.test(x=aotus$RFI,y=pithecia$RFI, alternative="greater", conf.level=0.95)
