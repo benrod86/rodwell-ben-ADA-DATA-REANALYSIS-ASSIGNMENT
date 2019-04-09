@@ -361,7 +361,6 @@ View(sumstatsgenus)
 
 # ANOVA and pairwise comparisons
 # DNE
-library(tidyverse)
 
 
 # LOAD DATA
@@ -372,37 +371,87 @@ str(d)
 DNEaov <- aov(data = d, Energy ~ Genus)
 summary(DNEaov)
 DNEttest2way <- pairwise.t.test(d$Energy, d$Genus, alternative = "two.sided", p.adjust.method = "holm")
-DNEttest1way <- pairwise.t.test(d$Energy, d$Genus, alternative = "less", p.adjust.method = "holm")
+DNEttest1wayless <- pairwise.t.test(d$Energy, d$Genus, alternative = "less", p.adjust.method = "holm")
 DNEttest2way
-DNEttest1way
+DNEttest1wayless
 
+DNEttest1wayless$p.value[2]
 
 # OPC
 OPCaov <- aov(data = d, OPC ~ Genus)
 summary(OPCaov)
 OPCttest2way <- pairwise.t.test(d$OPC, d$Genus, alternative = "two.sided", p.adjust.method = "holm")
-OPCttest1way <- pairwise.t.test(d$OPC, d$Genus, alternative = "", p.adjust.method = "holm")
+OPCttest1wayless <- pairwise.t.test(d$OPC, d$Genus, alternative = "greater", p.adjust.method = "holm")
 OPCttest2way
-OPCttest1way
+OPCttest1wayless
 
 
 # RFI
 RFIaov <- aov(data = d, RFI ~ Genus)
 summary(RFIaov)
 RFIttest2way <- pairwise.t.test(d$RFI, d$Genus, alternative = "two.sided", p.adjust.method = "holm")
-RFIttest1way <- pairwise.t.test(d$RFI, d$Genus, alternative = "greater", p.adjust.method = "holm")
+RFIttest1wayless <- pairwise.t.test(d$RFI, d$Genus, alternative = "less", p.adjust.method = "holm")
 RFIttest2way
-RFIttest1way
+RFIttest1wayless
 
 
 # SR
 SRaov <- aov(data = d, SR ~ Genus)
 summary(SRaov)
 SRttest2way <- pairwise.t.test(d$SR, d$Genus, alternative = "two.sided", p.adjust.method = "holm")
-SRttest1way <- pairwise.t.test(d$SR, d$Genus, alternative = "greater", p.adjust.method = "holm")
+SRttest1wayless <- pairwise.t.test(d$SR, d$Genus, alternative = "less", p.adjust.method = "holm")
 SRttest2way
 SRttest1way
 
+
+DNEttest1wayless
+RFIttest1wayless
+OPCttest1wayless
+SRttest1wayless
+aotpithdne <- DNEttest1wayless$p.value[2]
+aotpithrfi <- RFIttest1wayless$p.value[2] 
+aotpithsr <- SRttest1wayless$p.value[2]
+aotpithopc <- SRttest1wayless$p.value[2]
+aotchidne <- DNEttest1wayless$p.value[3]
+aotchirfi <- RFIttest1wayless$p.value[3]
+aotchisr <- SRttest1wayless$p.value[3]
+aotchiopc <- OPCttest1wayless$p.value[3]
+aotcacdne <- DNEttest1wayless$p.value[4]
+aotcacrfi <- RFIttest1wayless$p.value[4]
+aotcacsr <- SRttest1wayless$p.value[4]
+aotcacopc <- OPCttest1wayless$p.value[4]
+
+calpithdne <- DNEttest1wayless$p.value[6]
+calpithrfi <- RFIttest1wayless$p.value[6] 
+calpithsr <- SRttest1wayless$p.value[6]
+calpithopc <- SRttest1wayless$p.value[6]
+calchidne <- DNEttest1wayless$p.value[7]
+calchirfi <- RFIttest1wayless$p.value[7]
+calchisr <- SRttest1wayless$p.value[7]
+calchiopc <- OPCttest1wayless$p.value[7]
+calcacdne <- DNEttest1wayless$p.value[8]
+calcacrfi <- RFIttest1wayless$p.value[8]
+calcacsr <- SRttest1wayless$p.value[8]
+calcacopc <- OPCttest1wayless$p.value[8]
+
+pitchihdne <- DNEttest1wayless$p.value[11]
+pithchirfi <- RFIttest1wayless$p.value[11] 
+pithchisr <- SRttest1wayless$p.value[11]
+pitchihopc <- SRttest1wayless$p.value[11]
+pithcacdne <- DNEttest1wayless$p.value[12]
+pithcacrfi <- RFIttest1wayless$p.value[12]
+pithcacsr <- SRttest1wayless$p.value[12]
+pithcacopc <- OPCttest1wayless$p.value[12]
+chicacdne <- DNEttest1wayless$p.value[16]
+chicacrfi <- RFIttest1wayless$p.value[16]
+chicacsr <- SRttest1wayless$p.value[16]
+chicacopc <- OPCttest1wayless$p.value[16]
+
+
+
+ttesttable <- c(aotpithdne, aotpithrfi, aotpithsr, aotpithopc, aotchidne, aotchirfi, aotchisr, aotchiopc, aotcacdne,aotcacrfi,aotcacsr,aotcacopc, calpithdne, calpithrfi,calpithsr,calpithopc, calchidne,calchirfi,calchisr,calchiopc, calcacdne,calcacrfi,calcacsr,calcacopc, pitchihdne,pithchirfi,pithchisr,pitchihopc, pithcacdne,pithcacrfi,pithcacsr,pithcacopc, chicacdne,chicacrfi,chicacsr,chicacopc)
+as.data.frame <- ttesttable
+View(ttesttable)
 
 
 aotus <- d[1:18,]
@@ -422,34 +471,34 @@ names(d)
 ttest01 <- t.test(x=aotus$Energy,y=pithecia$Energy, alternative="greater", conf.level=0.95)
 ttest02 <- t.test(x=aotus$RFI,y=pithecia$RFI, alternative="greater", conf.level=0.95)
 ttest03 <- t.test(x=aotus$SR,y=pithecia$SR, alternative="greater", conf.level=0.95)
-ttest04 <- t.test(x=aotus$OPC,y=pithecia$OPC, alternative="greater", conf.level=0.95, na.rm = TRUE)
+ttest04 <- t.test(x=pithecia$OPC,y=aotus$OPC, alternative="greater", conf.level=0.95, na.rm = TRUE)
 
 # Aotus > Chiropotes; DNE, RFI, SR, OPCR
 ttest05 <- t.test(x=aotus$Energy, y=chiropotes$Energy, alternative="greater", conf.level=0.95)
 ttest06 <- t.test(x=aotus$RFI, y=chiropotes$RFI, alternative="greater", conf.level=0.95)
 ttest07 <- t.test(x=aotus$SR, y=chiropotes$SR, alternative="greater", conf.level=0.95)
-ttest08 <- t.test(x=aotus$OPC, y=chiropotes$OPC, alternative="greater", conf.level=0.95)
+ttest08 <- t.test(x=chiropotes$OPC, y=aotus$OPC, alternative="greater", conf.level=0.95)
 
 # Aotus > Cacajao; DNE, RFI, OPCR, SRA
 ttest09 <- t.test(x=aotus$Energy, y=cacajao$Energy, alternative="greater", conf.level=0.95)
 ttest10 <- t.test(x=aotus$RFI, y=cacajao$RFI, alternative="greater", conf.level=0.95)
-ttest11 <- t.test(x=aotus$OPC, y=cacajao$OPC, alternative="greater", conf.level=0.95)
+ttest11 <- t.test(x=cacajao$OPC, y=aotus$OPC, alternative="greater", conf.level=0.95)
 ttest12 <- t.test(x=aotus$SR, y=cacajao$SR, alternative="greater", conf.level=0.95)
 
 # Callicebus > Pithecia; RFI, OPCR, DNE, SRA
 ttest13 <- t.test(x=callicebus$RFI,y=pithecia$RFI, alternative="greater", conf.level=0.95)
-ttest14 <- t.test(x=callicebus$OPC,y=pithecia$OPC, alternative="greater", conf.level=0.95)
+ttest14 <- t.test(x=pithecia$OPC,y=callicebus$OPC, alternative="greater", conf.level=0.95)
 ttest15 <- t.test(x=callicebus$Energy,y=pithecia$Energy, alternative="greater", conf.level=0.95)
 ttest16 <- t.test(x=callicebus$SR,y=pithecia$SR, alternative="greater", conf.level=0.95)
 
 # Callicebus > Chiropotes; RFI, DNE, OPCR, SRA
 ttest17 <- t.test(x=callicebus$RFI, y=chiropotes$RFI, alternative="greater", conf.level=0.95)
 ttest18 <- t.test(x=callicebus$Energy, y=chiropotes$Energy, alternative="greater", conf.level=0.95)
-ttest19 <- t.test(x=callicebus$OPC, y=chiropotes$OPC, alternative="greater", conf.level=0.95)
+ttest19 <- t.test(x=chiropotes$OPC, y=callicebus$OPC, alternative="greater", conf.level=0.95)
 ttest20 <- t.test(x=callicebus$SR, y=chiropotes$SR, alternative="greater", conf.level=0.95)
 
 # Callicebus > Cacajao; OPCR, RFI, DNE, SRA
-ttest21 <- t.test(x=callicebus$OPC, y=cacajao$OPC, alternative="greater", conf.level=0.95)
+ttest21 <- t.test(x=cacajao$OPC, y=callicebus$OPC, alternative="greater", conf.level=0.95)
 ttest22 <- t.test(x=callicebus$RFI, y=cacajao$RFI, alternative="greater", conf.level=0.95)
 ttest23 <- t.test(x=callicebus$Energy, y=cacajao$Energy, alternative="greater", conf.level=0.95)
 ttest24 <- t.test(x=callicebus$SR, y=cacajao$SR, alternative="greater", conf.level=0.95)
@@ -520,11 +569,21 @@ pvals <- c(ttest01$p.value, ttest02$p.value, ttest03$p.value, ttest04$p.value,
            ttest29$p.value, ttest30$p.value, ttest31$p.value, ttest32$p.value,
            ttest33$p.value, ttest34$p.value, ttest35$p.value, ttest36$p.value)
 
+tvals <- c(ttest01$statistic, ttest02$statistic, ttest03$statistic, ttest04$statistic,
+           ttest05$statistic, ttest06$statistic, ttest07$statistic, ttest08$statistic,
+           ttest09$statistic, ttest10$statistic, ttest11$statistic, ttest12$statistic,
+           ttest13$statistic, ttest14$statistic, ttest15$statistic, ttest16$statistic,
+           ttest17$statistic, ttest18$statistic, ttest19$statistic, ttest20$statistic,
+           ttest21$statistic, ttest22$statistic, ttest23$statistic, ttest24$statistic, 
+           ttest25$statistic, ttest26$statistic, ttest27$statistic, ttest28$statistic,
+           ttest29$statistic, ttest30$statistic, ttest31$statistic, ttest32$statistic,
+           ttest33$statistic, ttest34$statistic, ttest35$statistic, ttest36$statistic)
+tvals <- as.data.frame(tvals)
 
 pvals <- as.data.frame(pvals)
 pvals
-
-
+ttesttable2 <- cbind(tvals, pvals)
+ttesttable2
 
 
 
