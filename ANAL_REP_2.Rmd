@@ -246,9 +246,6 @@ colnames(sumstatsspecies) <- c("SRA Mean", "SRA SD", "RFI Mean", "RFI SD", "DNE 
 ### Compare the table created to the one from the original paper
 ```{r}
 sumstatsspecies
-img src="img/table3sumstatsspecies.png" width="1164px"
-
-
 ```
 
 ## Summary statistics by genus
@@ -407,9 +404,6 @@ sumstatsgenus <- sumstatsgenus[,-1]
 #### NOTE that the code here has the max and min for each variable in separate rows while the original paper has them combined into rows named "range"
 ```{r}
 sumstatsgenus
-<img src="img/table5sumstatsgenus" width="970px"/>
-
-
 ```
 
 
@@ -460,9 +454,6 @@ pcaplot <- ggplot(d2, aes(x = PC1, y = PC2, col = Genus, fill = Genus)) +
 ### Compare the plot you created with the one from the original paper
 ```{r}
 pcaplot
-<img src="img/figure4pca.png" width="986px"/>
-
-
 ```
 
 
@@ -488,9 +479,6 @@ colnames(pcatable) <- c("Eigenvalue", "% Variance", "SRA", "RFI", "DNE", "OPCR")
 ### Compare your PCA table to the one fromm the original paper
 ```{r}
 pcatable
-<img src="img/table6.pcacoefs.png" width="970px"/>
-
-
 ```
 
 
@@ -530,9 +518,6 @@ figure3 <- ggarrange(SRbox, RFIbox, DNEbox, OPCRbox, ncol = 2, nrow = 2)
 ### Comare the figure you created with the original one from the paper
 ```{r}
 figure3
-<img src="img/figure3boxplots.png" width="968px"/>
-
-
 ```
 
 ## MANOVA
@@ -599,9 +584,7 @@ manovatable <- manovatable[1,]
 ### Compare the MANOVA table you created to the original one from the paper
 ```{r}
 manovatable
-<img src="img/table9manova.png" width="478px"/>
-
-
+View(manovatable)
 ```
 
 
